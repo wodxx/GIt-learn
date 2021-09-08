@@ -245,6 +245,9 @@ ssh-keygen -t rsa -C "youremail@example.com"
 
 ### 3.关联远程仓库（先有本地仓库） ###
 
+>登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库
+>目前，在GitHub上的这个新仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库
+
 ```C
 git remote add origin git@github.com:wodxx/learning_git.git
 # 后面的地址换成自己的 GitHub 仓库地址
