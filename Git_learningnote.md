@@ -293,3 +293,6 @@ $ git push gitee master
 $ git clone 2286721671@qq.com:wodxx/learning_git.git
 # GitHub 支持多种协议,上面是 ssh 协议,还有 https 协议
 ```
+
+### 六. 分支管理 ###
+
