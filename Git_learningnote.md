@@ -327,6 +327,9 @@ git branch -d<name>   #删除分支
 # 使用递归合并
 # --no-ff参数，表示禁用Fast forward
 git merge <new branch> --no-ff -m "merge with no -ff"
+
+$ git log --graph  查看分支合并图
+$ git log --graph --pretty=oneline --abbrev-commit
 ```
 
 合并后，可以使用git log 查看历史分支！
@@ -338,3 +341,35 @@ git merge <new branch> --no-ff -m "merge with no -ff"
 2.**干活都在dev分支上**，也就是说，dev分支是不稳定的，到某个时候，比如1.0版本发布时，再把dev分支合并到master上，在master分支发布1.0版本；
 3.每个人都在dev分支上干活，每个人都有自己的分支，时不时地往dev分支上合并就可以了;
 4.合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+
+### 4. bug分支 ###
+
+```C
+  git stash  保存当前工作区和暂存区的修改状态,切换到其他分支修复 bug 等工作然后在回来继续工作
+$ git stash list  查看保存现场的列表
+$ git stash pop   恢复的同时把 stash 内容也删除
+$ git stash apply  恢复现场，stash内容并不删除
+$ git stash drop   删除 stash 内容
+$ git stash apply stash@{0}  多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash
+
+通常在 dev 分支开发时,需要有紧急 bug 需要马上处理,保存现在修改的文件等,先修复 bug 后再回来继续工作的情况
+
+$ git cherry-pick <commit> 复制一个特定的提交到当前分支(当前分支的内容需要先 commit,然后冲突的文件需要解决冲突,然后 commit)
+
+$ git rebase  把本地未push的分叉提交历史整理成直线(使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比)
+```
+
+### 5. feature分支 ###
+
+>开发一个新feature，最好新建一个分支；
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D < name > 强行删除。
+
+### 6. 多人协作 ###
+
+>当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin
+> 1.查看远程库信息，使用**git remote -v**；
+2.本地新建的分支如果不推送到远程，对其他人就是不可见的；
+3.从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
+4.在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+5.建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
+6.从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
