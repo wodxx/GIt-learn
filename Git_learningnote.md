@@ -287,6 +287,13 @@ $ git push github master
 $ git push gitee master
 ```
 
+**本地仓库和远程仓库关联可能出现的问题:**
+1.如果在github上建立新仓库时创建了一个readme文件，可能出现本地仓库无法关联远程仓库的主分支的问题；
+2.此时就要把远程仓库的文件pull到本地仓库再重新关联，用如下命令：
+>git pull --rebase origin main
+
+
+
 ### 6.从远程仓库克隆 ###
 
 ```C
