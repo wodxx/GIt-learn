@@ -202,7 +202,7 @@ $ git restore <file>
 
 场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
 
-场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset --staged <file>，就回到了场景1，第二步按场景1操作。
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset --staged < file >，就回到了场景1，第二步按场景1操作。
 
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
 
@@ -292,8 +292,6 @@ $ git push gitee master
 2.此时就要把远程仓库的文件pull到本地仓库再重新关联，用如下命令：
 >git pull --rebase origin main
 
-
-
 ### 6.从远程仓库克隆 ###
 
 ```C
@@ -301,7 +299,7 @@ $ git clone 2286721671@qq.com:wodxx/learning_git.git
 # GitHub 支持多种协议,上面是 ssh 协议,还有 https 协议
 ```
 
-### 六. 分支管理 ###
+## 六. 分支管理 ##
 
 ***分支的功能***
 >创建一个属于自己的分支，把工作区的内容提交到自己的分支里面，防止进度丢失；并且自己的分支别人是看不到的。
@@ -380,3 +378,55 @@ $ git rebase  把本地未push的分叉提交历史整理成直线(使得我们�
 4.在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
 5.建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
 6.从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
+
+## 七 .标签管理 ##
+
+**原因** 为什么要使用标签管理？
+答：给版本库打一个标签，确定打标签时的某个版本！
+
+### 1. 创建标签 ###
+
+```C
+打标签的过程：
+git branch                   #查看当前分支
+git checkout < branch >      #切换到需要打标签的分支上
+git tag < name >             #name是标签的名字，如 v1.0
+git tag                      #查看所有标签
+```
+
+**问题1** 如何给以前的commit打标签？
+
+```C
+
+git log --pretty=oneline --abbrev-commit   #找以前的commit id
+git tag v0.9 < commit id >                 #给以前提交的版本打上标签
+git tag                                    #再次查看标签
+```
+
+**问题2** 如何查看标签信息？
+
+```C
+git show < tag name >     #因为标签不是按时间顺序列出，而是按字母顺序排列的。因此可以用该命令来查看具体的标签信息。
+git tag -a v0.1 -m “version 0.1 released” 1094adb  #[创建标签的另一种方法]带说明的标签，用-a指定标签名，-m指定说明文字。
+```
+
+***注意***
+>1.默认的标签时打在最新提交的commit上的
+2.标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。
+
+### 2. 操作标签 ###
+
+```C
+操作1：删除标签     
+git tag -d v0.1
+
+操作2：标签推远程   
+git push origin < tag name > 
+
+或者一次性推送全部尚未推送到远程的本地标签  
+git push origin --tags
+
+操作3:标签已推送的情况下删除标签
+git tag -d v0.9         #先从本地删除
+git push origin : refs/tags/v0.9    #再从远程删除
+```
