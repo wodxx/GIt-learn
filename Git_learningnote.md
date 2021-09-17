@@ -430,3 +430,17 @@ git push origin --tags
 git tag -d v0.9         #先从本地删除
 git push origin : refs/tags/v0.9    #再从远程删除
 ```
+
+## 八. 使用github ##
+
+### 1.使用github ###
+
+***做什么?***
+参与一个开源项目!比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，访问它的项目主页,点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
+>git clone git@github.com:michaelliao/bootstrap.git
+在github上，可以任意Fork开源仓库;
+自己拥有Fork后的仓库的读写权；
+可以推送pull request 给官方仓库来贡献代码。
+
+### 2.使用Gitee ###
+
