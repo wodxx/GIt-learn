@@ -444,3 +444,12 @@ git push origin : refs/tags/v0.9    #再从远程删除
 
 ### 2.使用Gitee ###
 
+### 3.建立gitignore文件 ###
+
+>在本地仓库建立一个gitignore文件，旨在把不想推送的文件夹或者文件在一次推送的过程中忽略掉。
+touch .gitignore           #在本地仓库下建立gitignore文件
+然后打开.gitignore文件，把不想推送的文件夹或者某类型的文件后缀写上去。
+
+注意:
+新建的.gitignore文件也要先推送到远程仓库，才能对里面忽略的内容在下次推送的时候产生效果！
+
