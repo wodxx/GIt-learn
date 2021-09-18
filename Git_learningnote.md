@@ -453,3 +453,28 @@ touch .gitignore           #在本地仓库下建立gitignore文件
 注意:
 新建的.gitignore文件也要先推送到远程仓库，才能对里面忽略的内容在下次推送的时候产生效果！
 
+### 4. 配置别名 ###
+
+***用途***
+将一些命令的英文以缩写的形式生成指令！
+
+```C
+git congfig --global alias.st status
+git config --global alias.co checkout
+git config --global alias.ci commit
+git config --global alias.br branch
+告诉git，以后用st表示status,用co代替checkout，用ci代替commit...
+```
+
+> --global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。
+
+### 5.搭建服务器 ###
+
+>自己搭建一台Git服务器作为私有仓库使用。
+
+### 九. 使用SourceTree ###
+
+使用SourceTree可以以图形界面操作Git，省去了敲命令的过程，对于常用的提交、分支、推送等操作来说非常方便。
+
+SourceTree使用Git命令执行操作，出错时，仍然需要阅读Git命令返回的错误信息。
+
